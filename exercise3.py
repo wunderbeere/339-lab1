@@ -21,11 +21,18 @@ values = np.zeros(int(Nsamp))
 trials = range(int(Nsamp))
 
 meangausst = []
+stdgausst = []
+#Total arrays for plotting
+
 for i in trials:
     values[i] = r.gauss(0,1) # value between 0 and 1
 
+#Finding mean and std
 meangauss = np.mean(values)
 meangausst.append(meangauss)
+stdgauss = np.std(values)
+stdgausst.append(stdgauss)
+
 
 Nsampv = 25
 
@@ -37,6 +44,9 @@ for i in trialsv:
 
 meangaussv = np.mean(valuesv)
 meangausst.append(meangaussv)
+stdgaussv = np.std(valuesv)
+stdgausst.append(stdgaussv)
+
 
 Nsampx = 75
 
@@ -48,6 +58,8 @@ for i in trialsx:
 
 meangaussx = np.mean(valuesx)
 meangausst.append(meangaussx)
+stdgaussx = np.std(valuesx)
+stdgausst.append(stdgaussx)
 
 
 Nsamp2 = 200
@@ -60,6 +72,8 @@ for i in trials2:
     
 meangauss2 = np.mean(values2)
 meangausst.append(meangauss2)
+stdgauss2 = np.std(values2)
+stdgausst.append(stdgauss2)
 
 
 Nsampt = 500
@@ -73,6 +87,8 @@ for i in trialst:
 
 meangaussl = np.mean(valuest)
 meangausst.append(meangaussl)
+stdgaussl = np.std(valuest)
+stdgausst.append(stdgaussl)
 
 
 Nsamp3 = 1e3
@@ -85,6 +101,8 @@ for i in trials3:
     
 meangauss3 = np.mean(values3)
 meangausst.append(meangauss3)
+stdgauss3 = np.std(values3)
+stdgausst.append(stdgauss3)
 
 
 Nsamp4 = 1e4
@@ -97,6 +115,8 @@ for i in trials4:
     
 meangauss4 = np.mean(values4)
 meangausst.append(meangauss4)
+stdgauss4 = np.std(values4)
+stdgausst.append(stdgauss4)
 
 
 Nsamp5 = 1e5
@@ -110,6 +130,9 @@ for i in trials5:
 
 meangauss5 = np.mean(values5)
 meangausst.append(meangauss5)
+stdgauss5 = np.std(values5)
+stdgausst.append(stdgauss5)
+
 
 Nsampo = 5e5
 
@@ -122,7 +145,8 @@ for i in trialso:
 
 meangausso = np.mean(valueso)
 meangausst.append(meangausso)
-
+stdgausso = np.std(valueso)
+stdgausst.append(stdgausso)
 
 
 Nsamp6 = 1e6
@@ -136,6 +160,8 @@ for i in trials6:
 
 meangauss6 = np.mean(values6)
 meangausst.append(meangauss6)
+stdgauss6 = np.std(values6)
+stdgausst.append(stdgauss6)
 
 
 Nsamp0 = 5e6
@@ -149,9 +175,13 @@ for i in trials0:
 
 meangauss0 = np.mean(values0)
 meangausst.append(meangauss0)
+stdgauss0 = np.std(values0)
+stdgausst.append(stdgauss0)
 print(meangausst)
+print(stdgausst)
 
 
+#Plotting mean
 x = [10, 25, 75, 200, 500, 1e3, 1e4, 1e5, 5e5, 1e6, 5e6]
 ln_N = [log10(i) for i in x]
 plt.figure(figsize=(10, 7))
@@ -162,12 +192,21 @@ plt.plot(ln_N, meangausst, 'o')
 plt.rcParams.update({'font.size': 16})
 plt.show()
 
+#Plotting std
+plt.figure(figsize=(10, 7))
+plt.title("STD of Gaussian Distribution For Varying Sample Sizes")
+plt.xlabel("$Log_{10}$ of Sample Size N")
+plt.ylabel("STD of Gaussian Number Distribution")
+plt.plot(ln_N, stdgausst, 'o')
+plt.rcParams.update({'font.size': 16})
+plt.show()
+
 
 
 'Linear Random Number Generator'
 
 
-
+#Defining Linear CDF and its inverse
 A = 2
 def CDF(x):
     return 1/2 * A * x**2
@@ -183,12 +222,19 @@ val = np.zeros(int(N))
 tri = range(int(N))
 
 meanlt = []
+stdlt = []
+#Total arrays for plotting
+
 for i in tri:
     ro = r.random() # value between 0 and 1
     val[i] = inverseCDF(ro) # store randomly generated x's
     
+    
+#Finding mean and std
 meanl = np.mean(val)
 meanlt.append(meanl)
+stdl = np.std(val)
+stdlt.append(stdl)
 
 
 Na = 25
@@ -203,6 +249,8 @@ for i in tria:
     
 meanla = np.mean(vala)
 meanlt.append(meanla)
+stdla = np.std(vala)
+stdlt.append(stdla)
 
 
 N2 = 75
@@ -217,6 +265,8 @@ for i in tri2:
     
 meanl2 = np.mean(val2)
 meanlt.append(meanl2)
+stdl2 = np.std(val2)
+stdlt.append(stdl2)
 
 
 Nb = 200
@@ -231,6 +281,8 @@ for i in trib:
     
 meanlb = np.mean(valb)
 meanlt.append(meanlb)
+stdlb = np.std(valb)
+stdlt.append(stdlb)
 
 
 Nc = 500
@@ -245,6 +297,8 @@ for i in tric:
     
 meanlc = np.mean(valc)
 meanlt.append(meanlc)
+stdlc = np.std(valc)
+stdlt.append(stdlc)
 
 
 Nd = 1e3
@@ -259,6 +313,8 @@ for i in trid:
     
 meanld = np.mean(vald)
 meanlt.append(meanld)
+stdld = np.std(vald)
+stdlt.append(stdld)
 
 
 Ne = 1e4
@@ -273,6 +329,9 @@ for i in trie:
     
 meanle = np.mean(vale)
 meanlt.append(meanle)
+stdle = np.std(vale)
+stdlt.append(stdle)
+
 
 Nf = 1e5
 
@@ -286,6 +345,8 @@ for i in trif:
     
 meanlf = np.mean(valf)
 meanlt.append(meanlf)
+stdlf = np.std(valf)
+stdlt.append(stdlf)
 
 
 Ng = 5e5
@@ -300,6 +361,9 @@ for i in trig:
     
 meanlg = np.mean(valg)
 meanlt.append(meanlg)
+stdlg = np.std(valg)
+stdlt.append(stdlg)
+
 
 Nh = 1e6
 
@@ -313,6 +377,9 @@ for i in trih:
     
 meanlh = np.mean(valh)
 meanlt.append(meanlh)
+stdlh = np.std(valh)
+stdlt.append(stdlh)
+
 
 Ni = 5e6
 
@@ -326,8 +393,11 @@ for i in trii:
     
 meanli = np.mean(vali)
 meanlt.append(meanli)
-print(meanlt)
+stdli = np.std(vali)
+stdlt.append(stdli)
 
+
+#Plotting mean
 x2 = [10, 25, 75, 200, 500, 1e3, 1e4, 1e5, 5e5, 1e6, 5e6]
 ln_N = [log10(i) for i in x]
 plt.figure(figsize=(10, 7))
@@ -338,6 +408,14 @@ plt.plot(ln_N, meanlt, 'o')
 plt.rcParams.update({'font.size': 16})
 plt.show() 
 
+#Plotting std
+plt.figure(figsize=(10, 7))
+plt.title("STD of Linear Distribution For Varying Sample Sizes")
+plt.xlabel("$Log_{10}$ of Sample Size N")
+plt.ylabel("STD of Linear Number Distribution")
+plt.plot(ln_N, stdlt, 'o')
+plt.rcParams.update({'font.size': 16})
+plt.show() 
 
 
 'Uniform Distribution'
@@ -349,13 +427,18 @@ Nu = 10
 valu = np.zeros(int(Nu))
 triu = range(int(Nu))
 
-meanut = []
+meanut = [] 
+stdut = []
+#Total arrays to plot
+
 for i in triu:
     valu[i] = r.random() # value between 0 and 1
    
-
+#Finding mean and std
 meanu = np.mean(valu)
 meanut.append(meanu)
+stdu = np.std(valu)
+stdut.append(stdu)
 
 
 Nu1 = 25
@@ -369,6 +452,9 @@ for i in triu1:
 
 meanu1 = np.mean(valu1)
 meanut.append(meanu1)
+stdu1 = np.std(valu1)
+stdut.append(stdu1)
+
 
 Nu2 = 75
 
@@ -381,6 +467,9 @@ for i in triu2:
 
 meanu2 = np.mean(valu2)
 meanut.append(meanu2)
+stdu2 = np.std(valu2)
+stdut.append(stdu2)
+
 
 Nu3 = 200
 
@@ -393,6 +482,9 @@ for i in triu3:
 
 meanu3 = np.mean(valu3)
 meanut.append(meanu3)
+stdu3 = np.std(valu3)
+stdut.append(stdu3)
+
 
 Nu4 = 500
 
@@ -405,6 +497,9 @@ for i in triu4:
 
 meanu4 = np.mean(valu4)
 meanut.append(meanu4)
+stdu4 = np.std(valu4)
+stdut.append(stdu4)
+
 
 Nu5 = 1e3
 
@@ -417,6 +512,9 @@ for i in triu5:
 
 meanu5 = np.mean(valu5)
 meanut.append(meanu5)
+stdu5 = np.std(valu5)
+stdut.append(stdu5)
+
 
 Nux = 1e4
 
@@ -429,6 +527,9 @@ for i in triux:
 
 meanux = np.mean(valux)
 meanut.append(meanux)
+stdux = np.std(valux)
+stdut.append(stdux)
+
 
 Nup = 1e5
 
@@ -441,6 +542,9 @@ for i in triup:
 
 meanup = np.mean(valup)
 meanut.append(meanup)
+stdup = np.std(valup)
+stdut.append(stdup)
+
 
 Nus = 5e5
 
@@ -453,6 +557,9 @@ for i in trius:
 
 meanus = np.mean(valus)
 meanut.append(meanus)
+stdus = np.std(valus)
+stdut.append(stdus)
+
 
 Nuq = 1e6
 
@@ -465,6 +572,9 @@ for i in triuq:
 
 meanuq = np.mean(valuq)
 meanut.append(meanuq)
+stduq = np.std(valuq)
+stdut.append(stduq)
+
 
 Nuz = 5e6
 
@@ -477,10 +587,11 @@ for i in triuz:
 
 meanuz = np.mean(valuz)
 meanut.append(meanuz)
+stduz = np.std(valuz)
+stdut.append(stduz)
 
-print(meanut)
 
-
+#Plotting mean
 x2 = [10, 25, 75, 200, 500, 1e3, 1e4, 1e5, 5e5, 1e6, 5e6]
 ln_N = [log10(i) for i in x]
 plt.figure(figsize=(10, 7))
@@ -491,6 +602,14 @@ plt.plot(ln_N, meanut, 'o')
 plt.rcParams.update({'font.size': 16})
 plt.show() 
 
+#Plotting std
+plt.figure(figsize=(10, 7))
+plt.title("STD of Uniform Distribution For Varying Sample Sizes")
+plt.xlabel("$Log_{10}$ of Sample Size N")
+plt.ylabel("STD of Uniform Number Distribution")
+plt.plot(ln_N, stdut, 'o')
+plt.rcParams.update({'font.size': 16})
+plt.show() 
 
 
 
